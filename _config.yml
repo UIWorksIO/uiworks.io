@@ -17,6 +17,9 @@ plugins:
   - jekyll-paginate-v2
   - jekyll-archives
 
+# Google Analytics
+google_analytics: UA—XXXXXXXX-X
+
 facebook_url: "https://www.facebook.com/nikhilgohil11"
 twitter_url: "https://twitter.com/uiworksio"
 instagram_url: "https://instagram.com/nikhilgohil11"
