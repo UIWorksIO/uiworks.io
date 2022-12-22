@@ -18,7 +18,7 @@ plugins:
   - jekyll-archives
 
 # Google Analytics
-google_analytics:  G-8YYYLHRFST
+google_analytics: G-8YYYLHRFST
 
 facebook_url: "https://www.facebook.com/nikhilgohil11"
 twitter_url: "https://twitter.com/uiworksio"
