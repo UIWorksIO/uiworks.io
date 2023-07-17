@@ -1,7 +1,7 @@
-title: "UiWorks.io - User Interface & Interaction development for iOS and Android apps."
+title: "UiWorks.io - User Interface & Interaction development for iOS, visionOS, iPadOS, macOS, watchOS & tvOS apps."
 email: "nikhil@uiworks.io"
 description: >- # this means to ignore newlines until "baseurl:"
-  UI development to reduce 30-40% of your development cost and effort.
+  DesignToCode (UI) development & bug fix service for iOS, visionOS, iPadOS, macOS, watchOS & tvOS to reduce 40% of your development cost and effort.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://uiworks.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: uiworksio
