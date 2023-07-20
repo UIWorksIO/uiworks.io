@@ -55,6 +55,8 @@ collections:
 #   - vendor/gems/
 #   - vendor/ruby/
 
+cache_dir: ~/.jekyll-cache/my-site
+
 ############################################################
 # Site configuration for the Jekyll 3 Pagination Gem
 # The values here represent the defaults if nothing is set

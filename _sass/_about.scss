@@ -207,7 +207,6 @@
 		}
 		&:nth-child(even){
 			.deneb_info_box{
-				text-align: right;
 				@media #{$xs}{
 					text-align: center;
 				}

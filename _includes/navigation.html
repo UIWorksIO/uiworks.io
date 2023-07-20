@@ -1,8 +1,8 @@
 <nav class="main_menu">
     <ul>
-	  <li class="menu-item {% if page.url == '/' %} active_link {% endif %}"><a href="{{site.url}}">Home</a></li>
+	  <li class="menu-item active_link"><a href="{{#}}">Home</a></li>
       {% for menu in site.data.navigation %}
-      <li class="menu-item {% if page.url contains menu.url %} active_link {% endif %}"><a href="{{menu.url}}">{{menu.text}}</a>
+      <li class="menu-item active_link"><a href="{{menu.url}}">{{menu.text}}</a>
        {% if menu.submenu %}
 		<ul class="sub-menu">
 			{% for submenu_item in menu.submenu %}
@@ -12,6 +12,6 @@
 		</li>
        {% endif %}
       {% endfor %}
-      <li class="menu-item"><a href="contact" class="deneb_btn">Hire Us</a></li>
+      <li class="menu-item"><a href="#seeplans" class="deneb_btn">See Plans</a></li>
     </ul>
 </nav>
