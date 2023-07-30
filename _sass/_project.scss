@@ -59,11 +59,10 @@
 		overflow: hidden;
 		background: $white;
 		border-radius: 10px;
-		@include transition(.5s);
+		@include transition(.3s);
 		margin-bottom: 10px;
 		
 			box-shadow: 4px 6.928px 15px 0px rgba(0, 0, 0, 0.15);
-			border: 3px dashed #ffbc26;
 			.deneb_info{
 				h4{
 					a{
