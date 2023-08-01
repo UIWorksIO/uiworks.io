@@ -1,10 +1,10 @@
 #Please use the main menu items under the "text"
 - text: My Work
   url: /#mywork
-- text: Benefits
-  url: /#whyyouneedus
 - text: Services
   url: /#services
+- text: How it works
+  url: /#workflow
 - text: Pricing 
   url: /#seeplans
 - text: FAQ
