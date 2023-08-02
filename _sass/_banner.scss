@@ -16,9 +16,6 @@
 					font-weight: 500;
 					margin-left: -2px;
 					margin-bottom: 10px;
-					@media #{$xs}{
-						font-size: 30px;
-					}
 					span{
 						font-weight: bold;
 						color: $theme_color;
