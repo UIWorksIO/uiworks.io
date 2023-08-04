@@ -134,6 +134,21 @@
 			}
 		}
 	}
+	.list{
+		margin-bottom: 25px;
+			li{		
+				padding-top: 4px;
+				background: url(../images/shape/shape_5.png) no-repeat;
+				background-position: center left;
+				text-align: left;	
+				padding-left:30px;
+				color: $title;			
+				padding-bottom: 4px;
+			}
+			p{
+				color: $theme_color;			
+			}
+	}
 }
 .service_wrapper{
 	.deneb_content_box{
