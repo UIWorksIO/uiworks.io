@@ -39,34 +39,8 @@
 			}
 			.deneb_img_box{
 				position: relative;
-				z-index: 1;
-				img{
-					@media #{$lg}{
-						width: 100%;
-					}
-					@media #{$xs}{
-						width: 100%;
-					}
-					border-radius: 8px;
-					max-width: 540px;
-					box-shadow: 2.5px 4.33px 15px 0px rgba(0, 0, 0, 0.3);
-				}
-				&:after{
-					@media #{$xs}{
-						display: none;
-					}
-					position: absolute;
-					right: 0;
-					top: -30px;
-					content: '';
-					width: 94%;
-					height: 397px;
-					z-index: -1;
-					border-radius: 8px;
-					background-image: -moz-linear-gradient( 0deg, rgb(255,216,149) 0%, rgb(255,210,110) 50%, rgb(254, 176, 0) 100%);
-					background-image: -webkit-linear-gradient( 0deg, rgb(255,216,149) 0%, rgb(255,210,110) 50%, rgb(254, 176, 0) 100%);
-					background-image: -ms-linear-gradient( 0deg, rgb(255,216,149) 0%, rgb(255,210,110) 50%, rgb(254, 176, 0) 100%);
-				}
+				float: right;
+				margin-right: 18px;
 			}
 		}
 		.slick-dots{

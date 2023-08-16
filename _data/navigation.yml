@@ -1,6 +1,13 @@
 #Please use the main menu items under the "text"
 - text: My Work
   url: /#mywork
+- text: Products
+  url: /products
+  submenu:
+  - text: XCLOC Transalator
+    url: https://www.producthunt.com/products/UiWorks#xcloc-translator
+  - text: visionOS Fan
+    url: https://visionos.fan
 - text: Services
   url: /#services
 - text: How it works
@@ -9,4 +16,3 @@
   url: /#seeplans
 - text: FAQ
   url: /#faq
- 
