@@ -1,11 +1,11 @@
 // deneb_banner
 .deneb_banner{
 	position: relative;
-	padding-top: 180px;
+	padding-top: 120px;
+	padding-bottom: 10px;
 	.hero_slider{
 		.signle_slider{
 			.banner_content{
-				margin-top: 30px;
 				@media #{$md}{
 					margin-bottom: 60px;
 				}
@@ -16,6 +16,9 @@
 					font-weight: 500;
 					margin-left: -2px;
 					margin-bottom: 10px;
+					@media #{$xs}{
+						font-size: 30px;
+					}
 					span{
 						font-weight: bold;
 						color: $theme_color;
