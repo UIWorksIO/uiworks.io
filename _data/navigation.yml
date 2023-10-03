@@ -2,7 +2,7 @@
 - text: My Work
   url: /#mywork
 - text: Products
-  url: /products
+  url: /#products
   submenu:
   - text: XCLOC Transalator
     url: https://www.producthunt.com/products/UiWorks#xcloc-translator
