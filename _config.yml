@@ -1,0 +1,33 @@
+title: "UiWorks.io - User Interface & Interaction development for iOS, visionOS, iPadOS, macOS, watchOS & tvOS apps."
+email: "nikhil@uiworks.io"
+description: >- # this means to ignore newlines until "baseurl:"
+  DesignToCode (UI) development & bug fix service for iOS, visionOS, iPadOS, macOS, watchOS & tvOS to reduce 40% of your development cost and effort.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://uiworks.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: uiworksio
+github_username:  UIWorksIO
+site_logo: "/assets/images/logo_1.png"
+
+permalink: "/:title"
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+  - jekyll-archives
+
+# Google Analytics
+google_analytics: G-8YYYLHRFST
+
+facebook_url: "https://www.facebook.com/nikhilgohil11"
+twitter_url: "https://twitter.com/uiworksio"
+instagram_url: "https://instagram.com/nikhilgohil11"
+
+hero_image: "/assets/images/breadcrumb_bg.jpg"
+
+sass:
+    sass_dir: _sass
+    style: compressed
+
+site_preloader: true

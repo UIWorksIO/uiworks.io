@@ -1,0 +1,103 @@
+// deneb_pricing
+.deneb_pricing{
+	.pircing_box{
+		@media #{$md}{
+			margin-bottom: 60px;
+		}
+		@media #{$xs}{
+			margin-bottom: 60px;
+		}
+		padding: 35px;
+		text-align: center;
+		border-radius: 8px;
+		background-color: rgb(255, 255, 255);
+		box-shadow: 2.5px 4.33px 15px 0px rgba(0, 0, 0, 0.15);
+		border: 3px dashed $white;
+		@include transition(.5s);
+		&:hover{
+			border-color: $theme_color;
+			box-shadow: 5px 8.66px 24px 0px rgba(0, 0, 0, 0.15);
+		}
+		.icon{
+			margin-bottom: 30px;
+		}
+		.title{
+			margin-bottom: 20px;
+			h3{
+				font-weight: bold;
+				color: $title;
+			}
+		}
+		.title2{
+			margin-bottom: 20px;
+			h3{
+				font-weight: bold;
+				color: $title;
+			}
+			&:after{
+					position: absolute;
+					content: '';
+					top: -15px;
+					background: url(../images/most-popular.png) no-repeat;
+					display: inline-block;
+					min-width: 200px;
+					min-height: 206px;
+					z-index: 1;
+			}
+		}
+		.list{
+			margin-bottom: 25px;
+				li{		
+					padding-top: 4px;
+					background: url(../images/shape/shape_5.png) no-repeat;
+					background-position: center left;
+					text-align: left;	
+					padding-left:30px;
+					color: $title;			
+					padding-bottom: 4px;
+				}
+				p{
+					color: $theme_color;			
+				}
+		}
+		.price{
+			margin-bottom: 25px;
+			h2{
+				font-size: 40px;
+				span{
+					font-size: 20px;
+					color: $theme_color;
+				}
+			}
+		}
+		.button_box{
+			.deneb_btn{
+				min-width: 158px;
+			}
+		}
+	}
+}
+.deneb_pricing{
+	.section_title{
+		h2{
+			position: relative;
+			&:after{
+			    left: 40px;
+			}
+		}
+	}
+}
+// pricing_v1
+.pricing_v1{
+	position: relative;
+	padding-top: 120px;
+}
+// pricing_v1
+.enterprice_v1{
+	position: relative;
+	padding-top: 40px;
+}
+
+.enterprice_v1_bottom{
+	padding-bottom: 120px;
+}
