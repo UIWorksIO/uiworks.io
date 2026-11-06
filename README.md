@@ -1,65 +1,51 @@
-# uiworks.io
+# UiWorks
 
-Marketing website for **UiWorks** — Design-to-Code (UI) development and bug-fix services for Apple platforms (iOS, visionOS, iPadOS, macOS, watchOS, tvOS).
+Waitlist landing page for **UiWorks** — centralized UI control for mobile and web teams. Ship instantly across platforms. Unleash AI safely.
 
-Live site: [https://uiworks.io](https://uiworks.io)  
-Repo: [UIWorksIO/uiworks.io](https://github.com/UIWorksIO/uiworks.io)
+Live domain: [https://uiworks.io](https://uiworks.io)
 
 ## Stack
 
 | Piece | Detail |
 | --- | --- |
-| Static site | [Jekyll](https://jekyllrb.com/) via `github-pages` gem |
-| Theme base | Minima (layout is custom; Deneb-derived HTML/CSS) |
-| Styles | SCSS in `_sass/` → compiled through `assets/css/style.scss` |
-| Hosting | GitHub Pages (`CNAME` → `uiworks.io`) |
-| Analytics | Google Analytics `G-8YYYLHRFST` (production only) |
+| App | Vite + React + TypeScript |
+| Styles | Tailwind CSS v4 |
+| Hero visual | Responsive SVG design-system constellation |
+| Hosting | Cloudflare Pages |
+| Waitlist | Substack subscribe |
 
-## Quick start (local)
-
-Requirements: Ruby 2.7+ / 3.x, Bundler.
+## Local development
 
 ```bash
-bundle install
-bundle exec jekyll serve
+cp .env.example .env
+# set VITE_SUBSTACK_PUBLISHING_URL to your Substack publication URL
+npm install
+npm run dev
 ```
 
-Open [http://localhost:4000](http://localhost:4000).
-
-Useful flags:
+Build:
 
 ```bash
-# Live reload while editing
-bundle exec jekyll serve --livereload
-
-# Force production plugins/analytics behavior
-JEKYLL_ENV=production bundle exec jekyll serve
+npm run build
+# output → dist/
 ```
 
-Built output lands in `_site/` (do not edit that folder by hand).
+## Substack
 
-## Docs for editing later
+1. Create a Substack publication for product updates / early access.
+2. Set `VITE_SUBSTACK_PUBLISHING_URL` (e.g. `https://uiworks.substack.com`) — no trailing slash.
+3. Form submit opens `{publication}/subscribe?email=…` for confirmation.
 
-| Doc | Use when |
+## Cloudflare Pages
+
+| Setting | Value |
 | --- | --- |
-| [docs/STRUCTURE.md](docs/STRUCTURE.md) | You need a map of folders, pages, and section includes |
-| [docs/EDITING.md](docs/EDITING.md) | You want to change copy, pricing, nav, images, or styles |
-| [AGENTS.md](AGENTS.md) | Cursor / AI agents should follow project conventions |
+| Framework preset | Vite (or None) |
+| Root directory | `/` (repo root) |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Env var | `VITE_SUBSTACK_PUBLISHING_URL` |
 
-## Site map (pages)
+SPA fallback: `public/_redirects`. Security headers: `public/_headers`.
 
-| URL | Source file | Notes |
-| --- | --- | --- |
-| `/` | `index.html` | Homepage — assembles sections from `_includes/` |
-| `/portfolio` | `portfolio.html` | Portfolio grid (self-contained markup) |
-| `/terms_and_condition` | `terms_and_condition.html` | Terms / privacy / cancel |
-| `/update_to_latest` | `update_to_latest.html` | Alternate landing (OS update pitch) |
-| `/404.html` | `404.html` | Not found |
-
-## Deploy
-
-Push to the GitHub Pages branch/source configured for this repo. The custom domain is set in `CNAME` (`uiworks.io`). Site settings live in `_config.yml`.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+`VITE_` vars are inlined at **build** time — redeploy after changing them. Attach `uiworks.io` under Pages → Custom domains (DNS at Cloudflare).

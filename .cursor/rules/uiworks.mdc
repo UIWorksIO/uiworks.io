@@ -1,0 +1,17 @@
+# uiworks.io
+
+Vite + React + Tailwind waitlist / marketing site. Hosted on Cloudflare Pages. Full guidance: `AGENTS.md`, `README.md`.
+
+## Do
+
+- Edit sections in `src/components/`
+- Theme tokens in `src/index.css` (`--color-brand` amber `#feb000`)
+- Waitlist via `src/lib/substack.ts` + `VITE_SUBSTACK_PUBLISHING_URL`
+- Keep dark product aesthetic, Lucide icons, and the Headless Design System hero visual
+
+## Don't
+
+- Bring back Jekyll / `_site` / `_includes` unless explicitly requested
+- Commit `.env` or secrets
+- Reveal technical mechanics in marketing copy (SDUI, JSON schema, A2UI, etc.)
+- Migrate to Next.js unless the user asks (this is a static landing page)

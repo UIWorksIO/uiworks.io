@@ -1,54 +1,42 @@
 # Agent instructions — uiworks.io
 
-This repo is the **Jekyll** marketing site for UiWorks (Apple-platform UI / Design-to-Code service), hosted on **GitHub Pages** at uiworks.io.
+This repo is the **Vite + React** waitlist / marketing site for UiWorks, hosted on **Cloudflare Pages** at uiworks.io.
 
 ## Before changing anything
 
-1. Read [docs/STRUCTURE.md](docs/STRUCTURE.md) for the folder map and homepage section order.
-2. Read [docs/EDITING.md](docs/EDITING.md) for the “change X → edit Y” table.
-3. Prefer editing **`_includes/`**, **`_data/`**, **`_config.yml`**, and **`_sass/`** over inventing a new stack.
+Prefer editing:
+
+- `src/components/` — page sections (Hero, HeroVisual, Features, BottomCta, WaitlistForm)
+- `src/lib/substack.ts` — waitlist subscribe helper
+- `src/index.css` — Tailwind theme tokens (brand amber `#feb000`)
+- `.env.example` / Cloudflare env — `VITE_SUBSTACK_PUBLISHING_URL`
 
 ## Hard rules
 
-- **Do not rewrite this as React/Next/etc.** unless the user explicitly asks for a migration.
-- **Do not edit `_site/`** — it is generated output.
-- **Do not commit secrets.** Analytics IDs and public URLs are fine; never add private keys or payment credentials.
-- Keep the existing visual language (Deneb-derived layout, `$theme_color` amber `#feb000`, Poppins/Montserrat) unless the user requests a redesign.
-- Match existing markup patterns: Bootstrap grid, `deneb_*` class names, WOW/`wow fadeIn*` animation classes, `{% include %}` composition.
+- **Do not revive Jekyll** unless the user explicitly asks.
+- **Do not commit secrets.** `.env` is gitignored; only public Substack URLs belong in `VITE_` vars.
+- Keep the dark, product-led visual language and amber brand `#feb000` unless redesign is requested.
+- Keep “how it works” mysterious in copy — no JSON schema, SDUI, A2UI, middleware, or BaaS language.
 
-## Layout integrity
+## Layout
 
-`_layouts/default.html` must include (uncommented):
+Single page composed in `src/App.tsx`:
 
-- `{% include header.html %}`
-- `{{ content }}`
-- `{% include footer.html %}`
+1. `Hero` (+ `HeroVisual` design-system constellation)
+2. `Features`
+3. `BottomCta`
+4. Footer
 
-`portfolio_noheader.html` intentionally skips the header.
-
-## Typical edit targets
-
-| Request | Primary files |
-| --- | --- |
-| Homepage copy / section order | `index.html`, matching `_includes/*.html` |
-| Pricing / CTAs | `_includes/pricing.html`, `_includes/enterprise.html` |
-| Nav | `_data/navigation.yml` |
-| Brand / meta | `_config.yml` |
-| Colors / typography | `_sass/_variables.scss`, `_sass/custom.scss` |
-| Portfolio projects | `portfolio.html` + `assets/images/` |
-| Behavior / sliders | `assets/js/custom.js` |
-
-## Verify locally when possible
+## Verify locally
 
 ```bash
-bundle install
-bundle exec jekyll build
+npm install
+npm run build
 # or
-bundle exec jekyll serve --livereload
+npm run dev
 ```
 
 ## Scope discipline
 
 - Change only files needed for the request.
-- Do not “clean up” unrelated typos, vendor bundles, or unused includes unless asked.
-- When adding a section, wire it in `index.html` (or the relevant page) and give it an `id` if nav should deep-link to it.
+- Do not expand into a full product app unless asked.
