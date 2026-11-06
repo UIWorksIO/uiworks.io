@@ -1,10 +1,14 @@
-# Jekyll
+# Dependencies / build
+node_modules/
+dist/
+.env
+*.local
+
+# Jekyll leftovers (if any)
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
-
-# Bundler
 vendor/bundle/
 .bundle/
 
