@@ -6,10 +6,11 @@ This repo is the **Vite + React** waitlist / marketing site for UiWorks, hosted 
 
 Prefer editing:
 
-- `src/components/` — page sections (Hero, HeroVisual, Features, BottomCta, WaitlistForm)
+- `src/components/` — page sections (Hero, HeroVisual, HeroScene, Features, BottomCta, WaitlistForm)
 - `src/lib/substack.ts` — waitlist subscribe helper
 - `src/index.css` — Tailwind theme tokens (brand amber `#feb000`)
-- `.env.example` / Cloudflare env — `VITE_SUBSTACK_PUBLISHING_URL`
+- `wrangler.jsonc` — Cloudflare Workers static assets config
+- `.env.example` / Cloudflare build env — `VITE_SUBSTACK_PUBLISHING_URL`
 
 ## Hard rules
 
