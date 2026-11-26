@@ -1,4 +1,10 @@
-import { Monitor, Mic, Box, Watch, Waves, type LucideIcon } from "lucide-react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { Monitor, Mic, Box, Watch, Waves, Hand, type LucideIcon } from "lucide-react";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Surface = {
   label: string;
@@ -7,62 +13,75 @@ type Surface = {
 };
 
 const SURFACES: Surface[] = [
-  { label: "Screens", caption: "Web & native layouts", icon: Monitor },
-  { label: "Spatial", caption: "3D & immersive scenes", icon: Box },
+  { label: "2D Screens", caption: "Web & native layouts", icon: Monitor },
+  { label: "3D Spatial", caption: "Immersive scenes", icon: Box },
   { label: "Voice", caption: "Speak & listen", icon: Mic },
-  { label: "Wearables", caption: "Phone, watch, headset", icon: Watch },
-  { label: "Ambient", caption: "Any surface, anywhere", icon: Waves },
+  { label: "Touch", caption: "Gesture & haptics", icon: Hand },
+  { label: "Devices", caption: "Phone, watch, headset", icon: Watch },
+  { label: "Ambient", caption: "Any interface", icon: Waves },
 ];
 
-const RADIUS = 320;
-const STEP = 360 / SURFACES.length;
-
 export function Surfaces() {
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return;
+
+      gsap.from(".surfaces-intro > *", {
+        scrollTrigger: { trigger: root.current, start: "top 78%" },
+        y: 24,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+
+      gsap.from(".modality-card", {
+        scrollTrigger: { trigger: ".surfaces-grid", start: "top 82%" },
+        y: 40,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+    },
+    { scope: root },
+  );
+
   return (
-    <section className="relative overflow-hidden border-t border-white/5 bg-ink py-24 lg:py-32">
-      <div
-        className="pointer-events-none absolute inset-0"
-        aria-hidden
-        style={{
-          background: "radial-gradient(ellipse 50% 40% at 50% 100%, rgba(254,176,0,0.08), transparent 60%)",
-        }}
-      />
-      <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-brand">
+    <section id="surfaces" ref={root} className="relative border-t border-line bg-cream py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
+        <div className="surfaces-intro mx-auto max-w-2xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand">
             One system, every surface
           </p>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-snow sm:text-4xl">
-            Wherever people meet your product, it's the same brand.
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            Wherever people meet your product, it&apos;s the same brand.
           </h2>
-          <p className="mt-4 text-lg text-mist">
-            Define it once at the center. It shows up right, everywhere, automatically.
+          <p className="mt-4 font-serif text-xl italic leading-relaxed text-ink-muted">
+            “There should be as many interaction surfaces as there are moments of intent — unified
+            by one system.”
           </p>
         </div>
 
-        <div
-          className="surfaces-stage mt-16"
-          role="img"
-          aria-label="A rotating set of surfaces the Headless Design System reaches: screens, spatial scenes, voice, wearables, and ambient interfaces"
-        >
-          <div className="surfaces-ring" aria-hidden>
-            {SURFACES.map((surface, i) => {
-              const Icon = surface.icon;
-              return (
-                <div
-                  key={surface.label}
-                  className="surfaces-card"
-                  style={{ transform: `rotateY(${i * STEP}deg) translateZ(${RADIUS}px)` }}
-                >
-                  <div className="surfaces-card-icon">
-                    <Icon className="h-6 w-6" strokeWidth={1.75} />
-                  </div>
-                  <p className="font-display text-base font-bold text-snow">{surface.label}</p>
-                  <p className="text-sm text-mist">{surface.caption}</p>
+        <div className="surfaces-grid mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {SURFACES.map((surface) => {
+            const Icon = surface.icon;
+            return (
+              <article
+                key={surface.label}
+                className="modality-card rounded-3xl border border-line bg-snow p-6"
+              >
+                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-2xl bg-brand-wash text-brand">
+                  <Icon className="h-5 w-5" strokeWidth={1.75} />
                 </div>
-              );
-            })}
-          </div>
+                <h3 className="font-display text-lg font-bold text-ink">{surface.label}</h3>
+                <p className="mt-1 text-sm text-mist">{surface.caption}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

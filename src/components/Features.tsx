@@ -1,5 +1,10 @@
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { RefreshCw, Sparkles, Network, type LucideIcon } from "lucide-react";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 type Feature = {
   title: string;
@@ -18,100 +23,81 @@ const features: Feature[] = [
   {
     title: "Every modality",
     headline: "2D, 3D, voice, touch — one brand.",
-    body: "Keep every human interaction on-brand: screens, spatial interfaces, voice, gesture, and whatever comes next — from a single Headless Design System.",
+    body: "Keep every human interaction on-brand: screens, spatial interfaces, voice, gesture, and whatever comes next.",
     icon: Sparkles,
   },
   {
-    title: "Company-wide mesh",
-    headline: "Connect every team to one source of truth.",
-    body: "Design, product, and engineering share one living system. Change once at the center — every device and interaction updates in sync.",
+    title: "Agent-ready",
+    headline: "Governed UI for every agent surface.",
+    body: "Generative screens, approvals, and in-app actions all resolve through the same Headless Design System — powerful agents, brand-safe output.",
     icon: Network,
   },
 ];
 
-function useInView<T extends HTMLElement = HTMLElement>(threshold = 0.2) {
-  const ref = useRef<T | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { threshold },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, visible };
-}
-
-function handleTilt(e: MouseEvent<HTMLElement>) {
-  const card = e.currentTarget;
-  const rect = card.getBoundingClientRect();
-  const px = (e.clientX - rect.left) / rect.width - 0.5;
-  const py = (e.clientY - rect.top) / rect.height - 0.5;
-  card.style.setProperty("--tilt-y", `${px * 10}deg`);
-  card.style.setProperty("--tilt-x", `${py * -10}deg`);
-}
-
-function resetTilt(e: MouseEvent<HTMLElement>) {
-  const card = e.currentTarget;
-  card.style.setProperty("--tilt-x", "0deg");
-  card.style.setProperty("--tilt-y", "0deg");
-}
-
 export function Features() {
-  const { ref, visible } = useInView<HTMLElement>(0.15);
+  const root = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) return;
+
+      gsap.from(".feature-intro > *", {
+        scrollTrigger: { trigger: root.current, start: "top 78%" },
+        y: 28,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+      });
+
+      gsap.from(".feature-tile", {
+        scrollTrigger: { trigger: ".feature-grid", start: "top 80%" },
+        y: 36,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.12,
+        ease: "power3.out",
+      });
+    },
+    { scope: root },
+  );
 
   return (
     <section
       id="why"
-      ref={ref}
-      className="relative border-t border-white/5 bg-ink-elevated py-24 lg:py-32"
+      ref={root}
+      className="relative border-t border-line bg-cream-deep py-24 lg:py-32"
     >
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-brand">
+        <div className="feature-intro max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand">
             Why Headless Design System
           </p>
-          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-snow sm:text-4xl">
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
             Consistency across every interaction. Zero republish friction.
           </h2>
           <p className="mt-4 text-lg text-mist">
-            The goal: brand-perfect experiences wherever humans meet technology — and the
-            freedom to update them without waiting on stores.
+            The goal: brand-perfect experiences wherever humans meet technology — and the freedom
+            to update them without waiting on stores.
           </p>
         </div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {features.map((feature, i) => {
+        <div className="feature-grid mt-14 grid gap-4 md:grid-cols-3">
+          {features.map((feature) => {
             const Icon = feature.icon;
             return (
               <article
                 key={feature.title}
-                onMouseMove={handleTilt}
-                onMouseLeave={resetTilt}
-                className={`feature-card rounded-3xl border border-white/10 bg-ink-soft/80 p-7 ${
-                  visible ? "animate-fade-up" : "opacity-0"
-                }`}
-                style={visible ? { animationDelay: `${i * 0.12}s` } : undefined}
+                className="feature-tile rounded-3xl border border-line bg-cream p-7"
               >
-                <div className="feature-card-icon mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/15 text-brand ring-1 ring-brand/25">
+                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-wash text-brand">
                   <Icon className="h-6 w-6" strokeWidth={1.75} />
                 </div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-brand">
                   {feature.title}
                 </p>
-                <h3 className="mt-2 font-display text-xl font-bold text-snow">
-                  {feature.headline}
-                </h3>
+                <h3 className="mt-2 font-display text-xl font-bold text-ink">{feature.headline}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-mist">{feature.body}</p>
               </article>
             );
